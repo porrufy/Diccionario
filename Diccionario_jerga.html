@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Diccionario</title>
+</head>
+<body>
+
+<h1>Diccionario</h1>
+
+<input type="text" id="palabra" placeholder="Escribe una palabra">
+<button onclick="buscar()">Buscar</button>
+
+<p id="resultado"></p>
+
+<script>
+let diccionario = {};
+
+// Cargar el JSON
+fetch("https://drive.google.com/uc?id=ID_DEL_JSON")
+  .then(res => res.json())
+  .then(data => diccionario = data);
+
+function buscar() {
+  const palabra = document.getElementById("palabra").value.toLowerCase();
+  const resultado = diccionario[palabra] || "Palabra no encontrada";
+  document.getElementById("resultado").innerText = resultado;
+}
+</script>
+
+</body>
+</html>
